@@ -1,10 +1,12 @@
-from http import HTTPStatus
 from fastapi import FastAPI
+from api.v1.routers import users
 
 
 app = FastAPI()
 
 
-@app.get("/", status_code=HTTPStatus.OK)
-def read_root():
-    return {"message": "Hello World"}
+app.include_router(users.router)
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to Fast TODO-APP"}
