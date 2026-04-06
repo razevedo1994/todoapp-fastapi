@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from http import HTTPStatus
-from schemas import UserSchema, UserDB, UserPulic
+from schemas import UserSchema, UserDB, UserPublic
 
 
 user_database = []
@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", status_code=HTTPStatus.CREATED, response_model=UserPulic)
+@router.post("/", status_code=HTTPStatus.CREATED, response_model=UserPublic)
 async def create_user(user: UserSchema):
     user_with_id = UserDB(id=len(user_database) + 1, **user.model_dump)
 
