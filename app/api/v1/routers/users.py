@@ -14,7 +14,7 @@ router = APIRouter(
 
 @router.post("/", status_code=HTTPStatus.CREATED, response_model=UserPublic)
 async def create_user(user: UserSchema):
-    user_with_id = UserDB(id=len(user_database) + 1, **user.model_dump)
+    user_with_id = UserDB(id=len(user_database) + 1, **user.model_dump())
 
     user_database.append(user_database)
 
