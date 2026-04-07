@@ -26,3 +26,11 @@ select = ['I', 'F', 'E', 'W', 'PL', 'PT']
 
 [tool.ruff.format]
 preview = true
+
+[tool.taskipy.tasks]
+run = "fastapi dev main.py"
+
+pre_test = "task lint"
+
+lint = "ruff check . ; ruff check . --diff"
+format = "ruff check . --fix ; ruff format ."
