@@ -1,8 +1,7 @@
 from http import HTTPStatus
 
-from fastapi import APIRouter
-
 from app.schemas import UserDB, UserPublic, UserSchema
+from fastapi import APIRouter
 
 user_database = []
 
