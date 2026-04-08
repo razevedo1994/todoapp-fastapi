@@ -31,7 +31,7 @@ preview = true
 run = "fastapi dev main.py"
 
 pre_test = "task lint"
-test = "pytest --cov=. -vv"
+test = "pytest ../tests --cov=. -vv"
 
 lint = "ruff check . ; ruff check . --diff"
 format = "ruff check . --fix ; ruff format ."
