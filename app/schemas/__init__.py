@@ -1,3 +1,3 @@
-from schemas.user import UserDB as UserDB
-from schemas.user import UserPublic as UserPublic
-from schemas.user import UserSchema as UserSchema
+from app.schemas.user import UserDB as UserDB
+from app.schemas.user import UserPublic as UserPublic
+from app.schemas.user import UserSchema as UserSchema

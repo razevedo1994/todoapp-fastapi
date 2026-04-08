@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from fastapi import APIRouter
 
-from schemas import UserDB, UserPublic, UserSchema
+from app.schemas import UserDB, UserPublic, UserSchema
 
 user_database = []
 
