@@ -1,6 +1,6 @@
 from http import HTTPStatus
 
-from app.schemas import UserDB, UserPublic, UserSchema
+from app.schemas import UserDB, UserList, UserPublic, UserSchema
 from fastapi import APIRouter
 
 user_database = []
@@ -19,3 +19,8 @@ async def create_user(user: UserSchema):
     user_database.append(user_with_id)
 
     return user_with_id
+
+
+@router.get("/", status_code=HTTPStatus.OK, response_model=UserList)
+async def read_users():
+    return {"users": user_database}
