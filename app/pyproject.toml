@@ -35,3 +35,4 @@ test = "pytest ../tests --cov=. -vv"
 
 lint = "ruff check . ; ruff check . --diff"
 format = "ruff check . --fix ; ruff format ."
+format_test = "ruff check ../tests --fix ; ruff format ../tests"
