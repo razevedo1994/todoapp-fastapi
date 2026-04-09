@@ -1,0 +1,8 @@
+from http import HTTPStatus
+
+
+def test_root_return(client):
+    response = client.get("/")
+
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {"message": "Welcome to Fast TODO-APP"}
