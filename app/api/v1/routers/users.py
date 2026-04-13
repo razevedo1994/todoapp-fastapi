@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 from app.schemas import UserDB, UserList, UserPublic, UserSchema
+from app.services.validate_user import user_exist
 from fastapi import APIRouter, HTTPException
 
 user_database = []
@@ -28,10 +29,7 @@ async def read_users():
 
 @router.get("/{user_id}", status_code=HTTPStatus.OK, response_model=UserPublic)
 async def read_user(user_id: int):
-    if user_id < 1 or user_id > len(user_database):
-        raise HTTPException(
-            status_code=HTTPStatus.NOT_FOUND, detail="User with id not found."
-        )
+    user_exist(user_id, user_database)
 
     user = user_database[user_id - 1]
 
@@ -40,10 +38,7 @@ async def read_user(user_id: int):
 
 @router.put("/{user_id}", status_code=HTTPStatus.OK, response_model=UserPublic)
 async def update_user(user_id: int, user: UserSchema):
-    if user_id < 1 or user_id > len(user_database):
-        raise HTTPException(
-            status_code=HTTPStatus.NOT_FOUND, detail="User with id not found."
-        )
+    user_exist(user_id, user_database)
 
     user_with_id = UserDB(id=user_id, **user.model_dump())
 
