@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 from app.core import get_or_404
-from app.schemas import UserDB, UserList, UserPublic, UserSchema
+from app.schemas import Message, UserDB, UserList, UserPublic, UserSchema
 from fastapi import APIRouter
 
 user_database = []
@@ -45,3 +45,12 @@ async def update_user(user_id: int, user: UserSchema):
     user_database[user_id - 1] = user_with_id
 
     return user_with_id
+
+
+@router.delete("/{user_id}", status_code=HTTPStatus.OK, response_model=Message)
+async def delete_user(user_id: int):
+    get_or_404(user_id, user_database)
+
+    del user_database[user_id - 1]
+
+    return {"message": "User deleted"}
