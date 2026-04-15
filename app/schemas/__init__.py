@@ -1,3 +1,4 @@
+from app.schemas.tasks import TaskSchema as TaskSchema
 from app.schemas.user import Message as Message
 from app.schemas.user import UserDB as UserDB
 from app.schemas.user import UserList as UserList
