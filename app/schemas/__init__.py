@@ -1,3 +1,5 @@
+from app.schemas.tasks import TaskDB as TaskDB
+from app.schemas.tasks import TaskPublic as TaskPublic
 from app.schemas.tasks import TaskSchema as TaskSchema
 from app.schemas.user import Message as Message
 from app.schemas.user import UserDB as UserDB
