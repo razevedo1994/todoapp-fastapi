@@ -3,7 +3,7 @@ from http import HTTPStatus
 from app.core import get_or_404
 from app.schemas import TaskSchema
 from fastapi import APIRouter
-from users import user_database
+from .users import user_database
 
 tasks_database = []
 
