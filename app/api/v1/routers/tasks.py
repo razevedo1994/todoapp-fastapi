@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from collections import defaultdict
 
 from app.core import get_or_404
 from app.schemas import TaskDB, TaskPublic, TaskSchema, TaskList
@@ -6,7 +7,7 @@ from fastapi import APIRouter
 
 from .users import user_database
 
-tasks_database = {}
+tasks_database = defaultdict(list)
 
 router = APIRouter(
     prefix="/tasks",
@@ -26,7 +27,7 @@ async def create_task(user_id: int, task: TaskSchema):
         **task.model_dump(),
     )
 
-    tasks_database[user_id] = task_with_id
+    tasks_database[user_id].append(task_with_id)
 
     return task_with_id
 
@@ -34,6 +35,6 @@ async def create_task(user_id: int, task: TaskSchema):
 async def read_user_tasks(user_id: int):
     get_or_404(user_id, user_database)
 
-    user = tasks_database.get(user_id - 1)
+    user_tasks = tasks_database[user_id]
 
-    return {"tasks": list(user)}
+    return {"tasks": user_tasks}
