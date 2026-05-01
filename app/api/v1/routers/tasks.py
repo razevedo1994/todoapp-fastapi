@@ -39,3 +39,18 @@ async def read_user_tasks(user_id: int):
     user_tasks = tasks_database[user_id]
 
     return {"tasks": user_tasks}
+
+
+@router.put(
+    "/{user_id}/{task_id}",
+    status_code=HTTPStatus.OK,
+    response_model=TaskPublic,
+)
+async def update_task(user_id: int, task_id: int, task: TaskSchema):
+    get_or_404(user_id, user_database)
+
+    task_with_id = TaskDB(task_id=task_id, **task.model_dump())
+
+    tasks_database[user_id][task_id - 1] = task_with_id
+
+    return task_with_id
