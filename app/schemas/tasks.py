@@ -25,5 +25,6 @@ class TaskPublic(BaseModel):
     priority: str
     status: Status
 
+
 class TaskList(BaseModel):
     tasks: list[TaskPublic]

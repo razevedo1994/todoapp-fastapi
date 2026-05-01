@@ -1,8 +1,8 @@
-from http import HTTPStatus
 from collections import defaultdict
+from http import HTTPStatus
 
 from app.core import get_or_404
-from app.schemas import TaskDB, TaskPublic, TaskSchema, TaskList
+from app.schemas import TaskDB, TaskList, TaskPublic, TaskSchema
 from fastapi import APIRouter
 
 from .users import user_database
@@ -30,6 +30,7 @@ async def create_task(user_id: int, task: TaskSchema):
     tasks_database[user_id].append(task_with_id)
 
     return task_with_id
+
 
 @router.get("/{user_id}", status_code=HTTPStatus.OK, response_model=TaskList)
 async def read_user_tasks(user_id: int):
